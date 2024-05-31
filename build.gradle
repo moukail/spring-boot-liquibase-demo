@@ -36,7 +36,6 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-
 liquibase {
 	activities {
 		main {
@@ -66,5 +65,5 @@ task('deploy changeLog') {
 	}
 }
 
-diffChangelog.dependsOn('deploy changeLog')
-diff.dependsOn compileJava
+liquibaseDiffChangelog.dependsOn('deploy changeLog')
+liquibaseDiff.dependsOn compileJava
