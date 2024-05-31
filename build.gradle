@@ -45,7 +45,8 @@ liquibase {
 			password "secret"
 			changelogFile "src/main/resources/db/changelog/changelog-master.yml"
 			referenceDriver "liquibase.ext.hibernate.database.connection.HibernateDriver"
-			referenceUrl "hibernate:spring:nl.moukafih.demo.entities?dialect=org.hibernate.dialect.PostgreSQLDialect"
+			referenceUrl "hibernate:spring:nl.moukafih.demo.entities?dialect=org.hibernate.dialect.PostgreSQLDialect&hibernate.physical_naming_strategy=org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy&hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy"
+			classpath "src/main/resources/"
 			//logLevel "debug"
 		}
 	}
@@ -53,7 +54,7 @@ liquibase {
 
 project.ext.diffChangelogFile = "src/main/resources/db/changelog/changes/" + new Date().format("yyyy-MM-dd_HH_mm_ss") + "_changelog.sql"
 
-task('deploy changeLog') {
+task('myDiffChangelog') {
 	doFirst() {
 		liquibase {
 			activities {
@@ -65,5 +66,5 @@ task('deploy changeLog') {
 	}
 }
 
-liquibaseDiffChangelog.dependsOn('deploy changeLog')
+liquibaseDiffChangelog.dependsOn('myDiffChangelog')
 liquibaseDiff.dependsOn compileJava

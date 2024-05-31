@@ -1,24 +1,25 @@
-### Liquibase
+## Liquibase
+### Gradle
 #### Diff
-Gradle
 ```bash
-./gradlew diff
-```
-
-#### Update
-CLI
-```bash
-liquibase update --changelog-file=src/main/resources/db/changelog/changelog-master.yml \
---url=jdbc:postgresql://localhost:32768/mydatabase --username=myuser --password=secret
+./gradlew clean
+./gradlew liquibaseDiff
 ```
 
 #### DiffChangeLog
-Gradle
 ```bash
-./gradlew diffChangeLog
+./gradlew clean
+./gradlew liquibaseDiffChangelog
 ```
 
-CLI
+#### Update
+```bash
+./gradlew clean
+./gradlew liquibaseUpdate
+```
+
+### CLI
+#### DiffChangeLog
 ```bash
 liquibase diff-changelog --changelog-file=src/main/resources/db/changelog/changelog-master.yml \
 --url=jdbc:postgresql://localhost:32768/mydatabase --username=myuser --password=secret \
@@ -27,8 +28,7 @@ liquibase diff-changelog --changelog-file=src/main/resources/db/changelog/change
 ```
 
 #### Update
-Gradle
 ```bash
-./gradlew diffChangeLog
-./gradlew update
+liquibase update --changelog-file=src/main/resources/db/changelog/changelog-master.yml \
+--url=jdbc:postgresql://localhost:32768/mydatabase --username=myuser --password=secret
 ```

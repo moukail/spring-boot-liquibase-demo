@@ -3,7 +3,7 @@ package nl.moukafih.demo.entities;
 import jakarta.persistence.*;
 
 @Entity
-public class AppUser {
+public class User {
 
     private @Id
     @GeneratedValue(strategy = GenerationType.UUID) String id;
@@ -17,9 +17,9 @@ public class AppUser {
     @Column(nullable = false)
     private String role;
 
-    public AppUser() {}
+    public User() {}
 
-    public AppUser(String username, String password, String role) {
+    public User(String username, String password, String role) {
         super();
         this.username = username;
         this.password = password;
